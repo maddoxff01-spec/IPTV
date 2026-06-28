@@ -1,5 +1,4 @@
 #EXTM3U 
 #EXT-X-VERSION:3 
-#EXT-X-STREAM-INF:PROGRAM-ID=1
-http://iptv.kitv.live:1935/live/CTGDDN/CTGDDN/70.ts
-
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2560000 
+https://bldcmprod-cdn.toffeelive.com/cdn/live/b4u_music/playlist.m3u8
