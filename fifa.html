@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANURAG TV LIVE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255,0,0,0.8);
+            color: #ff0000;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+            font-size: 1.1em;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+        
+        .video-container {
+            background: #000000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255,0,0,0.5);
+            margin-bottom: 30px;
+            border: 3px solid #ff0000;
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: rgba(255,0,0,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-card h3 {
+            margin-bottom: 10px;
+            color: #ff0000;
+            font-size: 1.1em;
+        }
+        
+        .viewer-count {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff0000;
+        }
+        
+        .chat-section {
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+        }
+        
+        .chat-section h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .chat-messages {
+            background: #000000;
+            height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ff0000;
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            border-radius: 4px;
+        }
+        
+        .message {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255,0,0,0.05);
+            border-left: 4px solid #ff0000;
+            border-radius: 5px;
+            animation: slideIn 0.3s ease-in;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .message-user {
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 0.95em;
+        }
+        
+        .message-text {
+            margin-top: 5px;
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            background: #111111;
+            color: white;
+            font-size: 1em;
+        }
+        
+        input[type="text"]::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff6666;
+            box-shadow: 0 0 10px rgba(255,0,0,0.5);
+        }
+        
+        button {
+            padding: 12px 30px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #ff3333;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255,0,0,0.6);
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #ff0000;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .chat-messages {
+                height: 250px;
+            }
+            
+            .video-container {
+                border: 2px solid #ff0000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔴 FIFA LIVE STREAM</h1>
+            <div class="status">🔴 ANURAG TV LIVE</div>
+        </header>
+        
+        <div class="video-container">
+            <video id="livestream" controls autoplay muted>
+                <source src="https://d9ssxzmclhfo4.cloudfront.net/bein_sports.m3u8" type="application/x-mpegURL">
+                আপনার ব্রাউজার এই ভিডিও ফরম্যাট সমর্থন করে না।
+            </video>
+        </div>
+        
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        // HLS প্লেয়ার সেটআপ
+        const video = document.getElementById('livestream');
+        const videoSrc = 'https://d9ssxzmclhfo4.cloudfront.net/bein_sports.m3u8';
+        
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            video.play();
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.play();
+        }
+    </script>
+</body>
+</html>
